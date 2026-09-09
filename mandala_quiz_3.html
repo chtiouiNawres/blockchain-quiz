@@ -1,0 +1,891 @@
+<title>Blockchain Benefits Quiz</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #f0f2f5;
+    --surface: #ffffff;
+    --surface-2: #e8ebef;
+    --border: #d5dae1;
+    --text: #1a2027;
+    --text-muted: #5c6673;
+    --accent: #b5652e;
+    --accent-strong: #944f22;
+    --accent-on: #fff8f2;
+    --success: #1f8a64;
+    --success-bg: #e4f4ed;
+    --danger: #c4392e;
+    --danger-bg: #fbe9e7;
+    --ring-track: #dde1e7;
+    --shadow: 0 1px 2px rgba(20, 24, 30, 0.06), 0 8px 24px rgba(20, 24, 30, 0.06);
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12161c;
+      --surface: #1a2028;
+      --surface-2: #212933;
+      --border: #313b47;
+      --text: #e8ebef;
+      --text-muted: #96a1af;
+      --accent: #dd9257;
+      --accent-strong: #eaa870;
+      --accent-on: #241205;
+      --success: #52d69f;
+      --success-bg: #163227;
+      --danger: #ff8478;
+      --danger-bg: #3a1a17;
+      --ring-track: #2b333e;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.35);
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #12161c;
+    --surface: #1a2028;
+    --surface-2: #212933;
+    --border: #313b47;
+    --text: #e8ebef;
+    --text-muted: #96a1af;
+    --accent: #dd9257;
+    --accent-strong: #eaa870;
+    --accent-on: #241205;
+    --success: #52d69f;
+    --success-bg: #163227;
+    --danger: #ff8478;
+    --danger-bg: #3a1a17;
+    --ring-track: #2b333e;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 { font-family: 'Archivo', sans-serif; text-wrap: balance; margin: 0; }
+
+  .mono {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  a { color: var(--accent-strong); }
+
+  .app {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 28px 20px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* ---------- header ---------- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .brand { display: flex; align-items: center; gap: 12px; }
+
+  .coin-logo { width: 40px; height: 40px; flex-shrink: 0; }
+
+  .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+
+  .brand-name { font-family: 'Archivo'; font-weight: 800; font-size: 1.05rem; letter-spacing: -0.01em; }
+
+  .brand-sub { font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
+
+  .chain-strip { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .chip {
+    font-family: 'IBM Plex Mono';
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  /* ---------- shared card ---------- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .screen[hidden] { display: none; }
+
+  /* ---------- intro ---------- */
+  #screen-intro .card { padding: 36px 32px; display: flex; flex-direction: column; gap: 20px; }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono';
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    font-weight: 600;
+  }
+
+  #screen-intro h1 { font-size: clamp(1.5rem, 4vw, 2rem); }
+
+  #screen-intro p { color: var(--text-muted); line-height: 1.6; max-width: 56ch; }
+
+  .stat-row { display: flex; gap: 28px; flex-wrap: wrap; padding: 4px 0; }
+
+  .stat { display: flex; flex-direction: column; gap: 2px; }
+
+  .stat .num { font-family: 'Archivo'; font-weight: 800; font-size: 1.4rem; }
+
+  .stat .label { font-size: 0.75rem; color: var(--text-muted); }
+
+  .cat-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .cat-pill {
+    font-size: 0.76rem;
+    padding: 5px 11px;
+    border-radius: 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .btn {
+    font-family: 'Public Sans';
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 13px 22px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: var(--accent);
+    color: var(--accent-on);
+    align-self: flex-start;
+    transition: transform 0.12s ease, background 0.12s ease;
+  }
+
+  .btn:hover { background: var(--accent-strong); }
+  .btn:active { transform: translateY(1px); }
+  .btn:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 2px; }
+
+  .btn.ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn.ghost:hover { background: var(--surface-2); }
+
+  /* ---------- progress ---------- */
+  .progress-row { display: flex; align-items: center; gap: 14px; }
+
+  .blocks { display: flex; gap: 4px; flex: 1; flex-wrap: wrap; }
+
+  .block {
+    height: 7px;
+    flex: 1;
+    min-width: 8px;
+    border-radius: 3px;
+    background: var(--ring-track);
+    transition: background 0.35s ease, transform 0.25s ease;
+  }
+
+  .block.filled { background: var(--accent); }
+  .block.current { background: var(--accent); transform: scaleY(1.5); }
+
+  .progress-count {
+    font-family: 'IBM Plex Mono';
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  /* ---------- question ---------- */
+  #screen-quiz .card { padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 18px; }
+
+  .cat-tag {
+    align-self: flex-start;
+    font-family: 'IBM Plex Mono';
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  .question-text { font-size: 1.2rem; font-weight: 700; line-height: 1.45; }
+
+  .options { display: flex; flex-direction: column; gap: 10px; }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+    padding: 13px 15px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-family: 'Public Sans';
+    font-size: 0.95rem;
+    line-height: 1.45;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .option:hover:not(:disabled) { border-color: var(--accent); background: var(--surface-2); }
+  .option:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 1px; }
+  .option:disabled { cursor: default; }
+
+  .option .letter {
+    font-family: 'IBM Plex Mono';
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .option.is-correct { border-color: var(--success); background: var(--success-bg); }
+  .option.is-correct .letter { border-color: var(--success); color: var(--success); }
+  .option.is-wrong { border-color: var(--danger); background: var(--danger-bg); }
+  .option.is-wrong .letter { border-color: var(--danger); color: var(--danger); }
+
+  .feedback {
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+  }
+
+  .feedback.correct { border-color: var(--success); background: var(--success-bg); }
+  .feedback.wrong { border-color: var(--danger); background: var(--danger-bg); }
+
+  .feedback .verdict {
+    font-family: 'Archivo';
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .feedback.correct .verdict { color: var(--success); }
+  .feedback.wrong .verdict { color: var(--danger); }
+
+  .quiz-footer { display: flex; justify-content: flex-end; }
+
+  /* ---------- results ---------- */
+  #screen-results .card { padding: 34px 30px; display: flex; flex-direction: column; gap: 26px; }
+
+  .result-top { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+
+  .coin-score { width: 116px; height: 116px; flex-shrink: 0; position: relative; }
+
+  .coin-score svg { width: 100%; height: 100%; }
+
+  .coin-score .pct {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Archivo';
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--text);
+  }
+
+  .result-headline h2 { font-size: 1.35rem; margin-bottom: 6px; }
+  .result-headline p { color: var(--text-muted); margin: 0; max-width: 42ch; line-height: 1.55; }
+
+  .breakdown { display: flex; flex-direction: column; gap: 10px; }
+
+  .breakdown h3 { font-size: 0.95rem; margin-bottom: 4px; }
+
+  .cat-row { display: flex; align-items: center; gap: 10px; }
+
+  .cat-row .cat-name { width: 190px; flex-shrink: 0; font-size: 0.8rem; color: var(--text-muted); }
+
+  .cat-bar-track { flex: 1; height: 8px; border-radius: 4px; background: var(--ring-track); overflow: hidden; }
+
+  .cat-bar-fill { height: 100%; background: var(--accent); border-radius: 4px; }
+
+  .cat-row .cat-score { width: 40px; text-align: right; font-family: 'IBM Plex Mono'; font-size: 0.8rem; color: var(--text-muted); }
+
+  .review { display: flex; flex-direction: column; gap: 10px; }
+
+  .review h3 { font-size: 0.95rem; }
+
+  .review-item {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.87rem;
+  }
+
+  .review-item .rq { font-weight: 700; }
+  .review-item .ra-wrong { color: var(--danger); text-decoration: line-through; }
+  .review-item .ra-right { color: var(--success); font-weight: 600; }
+  .review-item .rex { color: var(--text-muted); line-height: 1.5; }
+
+  .result-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  footer.credit {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    line-height: 1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn, .block, .option, .cat-bar-fill, .ring-fill { transition: none !important; }
+  }
+
+  @media (max-width: 520px) {
+    .cat-row .cat-name { width: 128px; font-size: 0.72rem; }
+    .stat-row { gap: 18px; }
+  }
+</style>
+
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <svg class="coin-logo" viewBox="0 0 48 48" role="img" aria-label="Kepeng coin">
+        <mask id="coinHole">
+          <rect width="48" height="48" fill="#fff"/>
+          <rect x="18" y="18" width="12" height="12" fill="#000"/>
+        </mask>
+        <circle cx="24" cy="24" r="21" fill="var(--accent)" mask="url(#coinHole)"/>
+        <circle cx="24" cy="24" r="21" fill="none" stroke="var(--accent-strong)" stroke-width="1" mask="url(#coinHole)"/>
+      </svg>
+      <div class="brand-text">
+        <span class="brand-name">Blockchain Benefits</span>
+        <span class="brand-sub">A quiz for everyone, no coding needed</span>
+      </div>
+    </div>
+    <div class="chain-strip" aria-hidden="true">
+      <span class="chip">3 FAMILY ACCOUNTS</span>
+      <span class="chip">ON-CHAIN LEDGER</span>
+      <span class="chip">NO ADMIN OVERRIDE</span>
+    </div>
+  </header>
+
+  <main>
+    <section id="screen-intro" class="screen">
+      <div class="card">
+        <span class="eyebrow">Self-graded · 15 questions · no jargon</span>
+        <h1>Why bother putting chores on a blockchain?</h1>
+        <p>
+          <strong>Housework Credits</strong> is a real, working app where a family — Mom, Dad,
+          and Kid — send each other credits for chores done, with every transfer recorded
+          permanently. It's a small, everyday example that makes the actual benefits of
+          blockchain click: no one can quietly edit the numbers, no one device can lose the
+          whole history, and anyone can check the record for themselves. This quiz walks
+          through why that matters, using this app as the running example — zero coding
+          knowledge required.
+        </p>
+        <div class="stat-row">
+          <div class="stat"><span class="num">15</span><span class="label">questions</span></div>
+          <div class="stat"><span class="num">7</span><span class="label">topics</span></div>
+          <div class="stat"><span class="num">~4</span><span class="label">minutes</span></div>
+        </div>
+        <div class="cat-tags" id="catTags"></div>
+        <button class="btn" id="startBtn">Start the quiz</button>
+      </div>
+    </section>
+
+    <section id="screen-quiz" class="screen" hidden>
+      <div class="progress-row">
+        <div class="blocks" id="blocks"></div>
+        <span class="progress-count mono" id="progressCount">01 / 20</span>
+      </div>
+      <div class="card">
+        <span class="cat-tag" id="qCat"></span>
+        <h2 class="question-text" id="qText"></h2>
+        <div class="options" id="qOptions"></div>
+        <div class="feedback" id="qFeedback" hidden></div>
+        <div class="quiz-footer">
+          <button class="btn" id="nextBtn" disabled>Next question</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-results" class="screen" hidden>
+      <div class="card">
+        <div class="result-top">
+          <div class="coin-score">
+            <svg viewBox="0 0 120 120">
+              <circle class="ring-track" cx="60" cy="60" r="52" fill="none" stroke="var(--ring-track)" stroke-width="7"/>
+              <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="52" fill="none" stroke="var(--accent)" stroke-width="7"
+                      stroke-linecap="round" transform="rotate(-90 60 60)"/>
+              <mask id="coinHoleResult">
+                <rect width="120" height="120" fill="#fff"/>
+                <rect x="49" y="49" width="22" height="22" fill="#000"/>
+              </mask>
+              <circle cx="60" cy="60" r="38" fill="var(--surface-2)" mask="url(#coinHoleResult)"/>
+            </svg>
+            <span class="pct" id="scorePct"></span>
+          </div>
+          <div class="result-headline">
+            <h2 id="resultTitle"></h2>
+            <p id="resultSub"></p>
+          </div>
+        </div>
+
+        <div class="breakdown">
+          <h3>By topic</h3>
+          <div id="catBreakdown"></div>
+        </div>
+
+        <div class="review" id="reviewWrap">
+          <h3>Questions to revisit</h3>
+          <div id="reviewList"></div>
+        </div>
+
+        <div class="result-actions">
+          <button class="btn" id="retryBtn">Retake the quiz</button>
+          <a class="btn ghost" href="https://spontaneous-muffin-d0f871.netlify.app/" target="_blank" rel="noopener">Try the real app</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="credit">
+    Built around the Housework Credits app, running on Mandala Testnet — a practice example, not an official Mandala product.
+  </footer>
+</div>
+
+<script>
+(function () {
+  var QUESTIONS = [
+    {
+      cat: "Trust Without a Middleman",
+      q: "Mom, Dad, and Kid use the Housework Credits app to send each other credits for chores done. Why use a blockchain for this instead of a shared spreadsheet anyone could edit?",
+      options: [
+        "Once a credit transfer is recorded, no single person — not even Mom — can quietly go back and change the numbers",
+        "Spreadsheets can't display numbers accurately",
+        "Blockchains are free to use while spreadsheets cost money",
+        "Blockchains simply load faster than spreadsheets"
+      ],
+      correct: 0,
+      explain: "The core benefit over a shared file is that entries become extremely hard to alter after the fact — nobody gets an \"edit\" button to secretly adjust their own balance."
+    },
+    {
+      cat: "Trust Without a Middleman",
+      q: "Kid says \"I did the dishes and Dad still owes me credits,\" but Dad says he never got that request. How would this normally get settled in an app like this?",
+      options: [
+        "The app's original developer has to personally decide",
+        "It can never be resolved once there's a disagreement",
+        "Whoever argues more convincingly wins",
+        "Anyone can independently look up the on-chain history to see exactly what happened, and when"
+      ],
+      correct: 3,
+      explain: "One practical benefit of blockchain is verifiability: transaction history is public and checkable by anyone, not locked inside a file only one person controls."
+    },
+    {
+      cat: "Tamper-Proof History",
+      q: "The app shows a history table of every credit transfer — date, sender, receiver, reason. Once a transfer is confirmed, can it later be secretly edited or deleted?",
+      options: [
+        "No — once confirmed, past transactions become effectively permanent and can't be rewritten",
+        "Yes, but only the app's developer has that power",
+        "Yes, but only within the first 24 hours",
+        "Yes, any account holder can edit their own past transactions"
+      ],
+      correct: 0,
+      explain: "Immutability is one of blockchain's headline benefits — a confirmed transaction becomes part of a permanent record, which is exactly why it works as a trustworthy shared \"who-did-what\" log."
+    },
+    {
+      cat: "Tamper-Proof History",
+      q: "Why does it matter that history can't be secretly rewritten, even for something as low-stakes as a family chores app?",
+      options: [
+        "It only matters for banks and governments",
+        "It doesn't matter at all for small, low-stakes use cases",
+        "It removes an entire category of disputes — no one can later claim the record was quietly changed",
+        "It's a legal requirement for every app"
+      ],
+      correct: 2,
+      explain: "Even in low-stakes settings, tamper-proof history removes the \"he said, she said\" problem entirely — the record itself settles the argument."
+    },
+    {
+      cat: "No Single Point of Failure",
+      q: "Housework Credits balances aren't stored in a file on Mom's phone or Dad's laptop. Where does that data actually live?",
+      options: [
+        "On one family computer that has to stay switched on at all times",
+        "On the blockchain itself — a network of computers, not any single family member's device",
+        "Nowhere; the family just remembers the totals",
+        "On the app developer's private server"
+      ],
+      correct: 1,
+      explain: "There's no off-chain database and no application server here — every balance and every past transfer lives on the chain itself, not on anyone's personal device."
+    },
+    {
+      cat: "No Single Point of Failure",
+      q: "If the credits were instead just saved in a file on Mom's phone, what would happen if that phone was lost or broke — and how does the blockchain version avoid that risk?",
+      options: [
+        "This is only a problem for a specific phone brand",
+        "Blockchains lose their data just as easily when a phone breaks",
+        "There's no real risk either way",
+        "The whole chore history could vanish with the phone; on a blockchain, the record survives even if any one device is lost or damaged"
+      ],
+      correct: 3,
+      explain: "Because the ledger isn't tied to one device, losing or breaking any single family member's phone doesn't threaten the shared record — that's the practical upside of having no single point of failure."
+    },
+    {
+      cat: "Transparency You Can Check",
+      q: "Every transaction in the app links to a public \"block explorer.\" What does that actually let a family member do?",
+      options: [
+        "Change their own balance directly from the explorer",
+        "Verify a transaction really happened — amount, accounts, timing — without having to just take the app's word for it",
+        "Delete a transaction they disagree with",
+        "Send credits without using the app at all"
+      ],
+      correct: 1,
+      explain: "A block explorer is a public window into the same data the app reads — it lets anyone double-check a transaction independently, which is transparency in action."
+    },
+    {
+      cat: "Transparency You Can Check",
+      q: "True or false: to check the credit history on the block explorer, a family member has to trust that the app's developer is reporting the numbers honestly.",
+      options: [
+        "False — the block explorer reads directly from the blockchain itself, independent of the app or whoever built it",
+        "True — they still have to trust the developer's word"
+      ],
+      correct: 0,
+      explain: "The explorer queries the chain directly rather than the app's own database (there isn't one) — so it isn't something the app's creator could quietly manipulate."
+    },
+    {
+      cat: "Rules That Run Themselves",
+      q: "When Dad clicks \"Send\" to give Kid 5 credits for vacuuming, who or what actually enforces that the transfer happens correctly?",
+      options: [
+        "Nothing enforces it; entries are just appended to a text file",
+        "The hosting company (Netlify) enforces it",
+        "The smart contract — code running on the blockchain — automatically enforces the transfer with no human referee involved",
+        "A human moderator has to review and approve every transfer"
+      ],
+      correct: 2,
+      explain: "The balance-tracking logic lives entirely in the smart contract, not in any person's judgment — rules are enforced automatically and consistently, with no manual referee needed."
+    },
+    {
+      cat: "Rules That Run Themselves",
+      q: "What's the real difference between these \"credits\" and a normal bank balance, in terms of who can create or change them?",
+      options: [
+        "There's no difference at all",
+        "Credits only move exactly as the smart contract's rules allow — there's no employee or admin panel that can quietly adjust a balance",
+        "Any family member can type in whatever total they want",
+        "Credits automatically reset to zero every day"
+      ],
+      correct: 1,
+      explain: "Unlike a bank ledger a staff member could adjust, this contract's balances change only through the exact rule coded into it (a valid transfer) — there's no override button for anyone."
+    },
+    {
+      cat: "It's Not Free",
+      q: "Every time someone sends credits, their wallet shows a small network fee (paid in the testnet's own currency) — even though the \"credits\" aren't worth real money. What does this tell a beginner about blockchain in general?",
+      options: [
+        "Blockchain transactions are always completely free",
+        "The fee is optional and can always be skipped",
+        "Fees only apply to real cryptocurrencies, never to apps like this one",
+        "Using a blockchain isn't free — almost every action costs a small fee to the network, no matter what's being tracked"
+      ],
+      correct: 3,
+      explain: "A genuinely useful beginner takeaway: the trust and transparency benefits of blockchain come with a real, ongoing cost — a small fee per action. It's a trade-off, not a free lunch."
+    },
+    {
+      cat: "It's Not Free",
+      q: "If Dad's account has zero balance of that network fee currency, what happens when he tries to send Kid some credits?",
+      options: [
+        "The transaction can't go through — he needs a small amount of the fee currency on hand, even though he isn't sending any of it to Kid",
+        "The app automatically covers the fee for him",
+        "He can send the credits by some other method instead",
+        "It works fine — the fee currency and the credits are unrelated, so it doesn't matter"
+      ],
+      correct: 0,
+      explain: "This is a real limitation the project ran into: even though \"credits\" and the network's fee currency are two separate things, every single action still needs a bit of that fee currency just to happen at all."
+    },
+    {
+      cat: "Permanence Has Trade-offs",
+      q: "Is a family chores app actually a sensible use of blockchain, or is it overkill?",
+      options: [
+        "It's not legally allowed to use blockchain for non-financial data",
+        "It's a genuine trade-off: it gains transparency and tamper-proof history, at the cost of extra complexity (wallets, fees, no easy \"undo\") a spreadsheet wouldn't have",
+        "It's a perfect use case with no real downsides",
+        "Blockchain can never sensibly be used for anything this small"
+      ],
+      correct: 1,
+      explain: "A useful lesson from this exact project: blockchain isn't automatically \"better\" for everything — it's a real trade-off between trust/tamper-resistance and simplicity/cost, worth weighing case by case."
+    },
+    {
+      cat: "Permanence Has Trade-offs",
+      q: "The app only supports exactly 3 fixed accounts (Mom, Dad, Kid), written directly into the underlying code. To add a 4th family member later, what has to happen?",
+      options: [
+        "A brand-new version of the underlying contract has to be built and deployed, since the original rules are locked in and can't simply be edited",
+        "It updates automatically the next time someone logs in",
+        "The app developer edits the existing balances directly",
+        "Nothing — new accounts can be added anytime through a settings menu"
+      ],
+      correct: 0,
+      explain: "Just like transaction history, a smart contract's own rules are hard to change after deployment — a nice mirror of blockchain's core trade-off: strong permanence, low flexibility. Extending it means launching a new one."
+    },
+    {
+      cat: "Permanence Has Trade-offs",
+      q: "Which of these is NOT actually a core benefit of blockchain technology?",
+      options: [
+        "No single point of failure — data isn't tied to one device or company",
+        "Tamper-resistance — history is very hard to secretly rewrite",
+        "Guaranteed zero cost forever, with no fees under any circumstance",
+        "Transparency — anyone can verify the data independently"
+      ],
+      correct: 2,
+      explain: "Real blockchains almost always involve some fee to use, as this app's own gas requirement shows. \"Totally free forever\" isn't one of the genuine benefits — the real ones are transparency, tamper-resistance, and resilience against single points of failure."
+    }
+  ];
+
+  var CATEGORIES = [];
+  QUESTIONS.forEach(function (q) {
+    if (CATEGORIES.indexOf(q.cat) === -1) CATEGORIES.push(q.cat);
+  });
+
+  var state = { idx: 0, answers: new Array(QUESTIONS.length).fill(null) };
+
+  var screenIntro = document.getElementById('screen-intro');
+  var screenQuiz = document.getElementById('screen-quiz');
+  var screenResults = document.getElementById('screen-results');
+  var blocksEl = document.getElementById('blocks');
+  var progressCount = document.getElementById('progressCount');
+  var qCat = document.getElementById('qCat');
+  var qText = document.getElementById('qText');
+  var qOptions = document.getElementById('qOptions');
+  var qFeedback = document.getElementById('qFeedback');
+  var nextBtn = document.getElementById('nextBtn');
+  var catTagsEl = document.getElementById('catTags');
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function letter(i) { return String.fromCharCode(65 + i); }
+
+  function buildIntro() {
+    catTagsEl.innerHTML = '';
+    CATEGORIES.forEach(function (c) {
+      var span = document.createElement('span');
+      span.className = 'cat-pill';
+      span.textContent = c;
+      catTagsEl.appendChild(span);
+    });
+    var blocksInit = document.createDocumentFragment();
+  }
+
+  function buildBlocks() {
+    blocksEl.innerHTML = '';
+    QUESTIONS.forEach(function (_, i) {
+      var d = document.createElement('div');
+      d.className = 'block';
+      d.id = 'block-' + i;
+      blocksEl.appendChild(d);
+    });
+  }
+
+  function updateProgress() {
+    progressCount.textContent = pad(state.idx + 1) + ' / ' + pad(QUESTIONS.length);
+    QUESTIONS.forEach(function (_, i) {
+      var b = document.getElementById('block-' + i);
+      b.classList.toggle('filled', state.answers[i] !== null);
+      b.classList.toggle('current', i === state.idx);
+    });
+  }
+
+  function renderQuestion() {
+    var q = QUESTIONS[state.idx];
+    qCat.textContent = q.cat;
+    qText.textContent = q.q;
+    qOptions.innerHTML = '';
+    qFeedback.hidden = true;
+    qFeedback.className = 'feedback';
+    nextBtn.disabled = true;
+    nextBtn.textContent = state.idx === QUESTIONS.length - 1 ? 'See results' : 'Next question';
+
+    var already = state.answers[state.idx];
+
+    q.options.forEach(function (opt, i) {
+      var btn = document.createElement('button');
+      btn.className = 'option';
+      btn.type = 'button';
+      var span = document.createElement('span');
+      span.className = 'letter';
+      span.textContent = letter(i);
+      var txt = document.createElement('span');
+      txt.textContent = opt;
+      btn.appendChild(span);
+      btn.appendChild(txt);
+      btn.addEventListener('click', function () { selectOption(i); });
+      qOptions.appendChild(btn);
+    });
+
+    if (already !== null) {
+      revealAnswer(already, false);
+    }
+
+    updateProgress();
+  }
+
+  function revealAnswer(chosenIndex, animate) {
+    var q = QUESTIONS[state.idx];
+    var opts = qOptions.querySelectorAll('.option');
+    opts.forEach(function (btn, i) {
+      btn.disabled = true;
+      if (i === q.correct) btn.classList.add('is-correct');
+      if (i === chosenIndex && chosenIndex !== q.correct) btn.classList.add('is-wrong');
+    });
+    var correct = chosenIndex === q.correct;
+    qFeedback.hidden = false;
+    qFeedback.className = 'feedback ' + (correct ? 'correct' : 'wrong');
+    qFeedback.innerHTML = '<span class="verdict">' + (correct ? 'Correct.' : 'Not quite.') + '</span>' + q.explain;
+    nextBtn.disabled = false;
+  }
+
+  function selectOption(i) {
+    if (state.answers[state.idx] !== null) return;
+    state.answers[state.idx] = i;
+    revealAnswer(i, true);
+    updateProgress();
+  }
+
+  function goNext() {
+    if (state.idx < QUESTIONS.length - 1) {
+      state.idx += 1;
+      renderQuestion();
+    } else {
+      showResults();
+    }
+  }
+
+  function showResults() {
+    screenQuiz.hidden = true;
+    screenResults.hidden = false;
+
+    var total = QUESTIONS.length;
+    var correctCount = 0;
+    var byCat = {};
+    CATEGORIES.forEach(function (c) { byCat[c] = { correct: 0, total: 0 }; });
+
+    QUESTIONS.forEach(function (q, i) {
+      byCat[q.cat].total += 1;
+      if (state.answers[i] === q.correct) {
+        correctCount += 1;
+        byCat[q.cat].correct += 1;
+      }
+    });
+
+    var pct = Math.round((correctCount / total) * 100);
+    document.getElementById('scorePct').textContent = pct + '%';
+
+    var circumference = 2 * Math.PI * 52;
+    var ring = document.getElementById('ringFill');
+    ring.style.strokeDasharray = circumference.toFixed(1);
+    ring.style.strokeDashoffset = (circumference * (1 - pct / 100)).toFixed(1);
+    ring.style.transition = 'stroke-dashoffset 0.6s ease';
+    ring.setAttribute('stroke', pct >= 70 ? 'var(--success)' : 'var(--accent)');
+
+    var title, sub;
+    if (pct === 100) {
+      title = 'Full marks — ' + correctCount + ' / ' + total;
+      sub = "You've got the real benefits down: no one can quietly edit the record, no single device can lose it, and anyone can check it for themselves.";
+    } else if (pct >= 70) {
+      title = 'Solid — ' + correctCount + ' / ' + total;
+      sub = "You've got the big picture. Check the review below for the couple of ideas worth another look.";
+    } else if (pct >= 40) {
+      title = 'Getting there — ' + correctCount + ' / ' + total;
+      sub = 'A few of these ideas are still fuzzy. Worth a pass through the review section below before you explain it to someone else.';
+    } else {
+      title = correctCount + ' / ' + total + ' correct';
+      sub = "That's fine — this is genuinely unfamiliar territory for most people. Go through the review below, then retake it.";
+    }
+    document.getElementById('resultTitle').textContent = title;
+    document.getElementById('resultSub').textContent = sub;
+
+    var catWrap = document.getElementById('catBreakdown');
+    catWrap.innerHTML = '';
+    CATEGORIES.forEach(function (c) {
+      var stat = byCat[c];
+      var row = document.createElement('div');
+      row.className = 'cat-row';
+      var pctCat = stat.total ? (stat.correct / stat.total) * 100 : 0;
+      row.innerHTML =
+        '<span class="cat-name">' + c + '</span>' +
+        '<span class="cat-bar-track"><span class="cat-bar-fill" style="width:' + pctCat + '%"></span></span>' +
+        '<span class="cat-score mono">' + stat.correct + '/' + stat.total + '</span>';
+      catWrap.appendChild(row);
+    });
+
+    var reviewWrap = document.getElementById('reviewWrap');
+    var reviewList = document.getElementById('reviewList');
+    reviewList.innerHTML = '';
+    var missed = [];
+    QUESTIONS.forEach(function (q, i) {
+      if (state.answers[i] !== q.correct) missed.push({ q: q, chosen: state.answers[i] });
+    });
+
+    if (missed.length === 0) {
+      reviewWrap.hidden = true;
+    } else {
+      reviewWrap.hidden = false;
+      missed.forEach(function (m) {
+        var item = document.createElement('div');
+        item.className = 'review-item';
+        var chosenText = m.chosen === null ? '(skipped)' : m.q.options[m.chosen];
+        item.innerHTML =
+          '<span class="rq">' + m.q.q + '</span>' +
+          '<span class="ra-wrong">Your answer: ' + chosenText + '</span>' +
+          '<span class="ra-right">Correct: ' + m.q.options[m.q.correct] + '</span>' +
+          '<span class="rex">' + m.q.explain + '</span>';
+        reviewList.appendChild(item);
+      });
+    }
+  }
+
+  function retake() {
+    state = { idx: 0, answers: new Array(QUESTIONS.length).fill(null) };
+    screenResults.hidden = true;
+    screenQuiz.hidden = false;
+    renderQuestion();
+  }
+
+  document.getElementById('startBtn').addEventListener('click', function () {
+    screenIntro.hidden = true;
+    screenQuiz.hidden = false;
+    buildBlocks();
+    renderQuestion();
+  });
+
+  nextBtn.addEventListener('click', goNext);
+  document.getElementById('retryBtn').addEventListener('click', retake);
+
+  buildIntro();
+})();
+</script>
